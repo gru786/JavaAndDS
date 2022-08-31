@@ -1,17 +1,15 @@
 import java.util.Scanner;
-class BinarySearch{
 
+import HelperPrograms.TakeArrInp;
+class BinarySearch{
+   
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int n;
         System.out.println("Enter the size of input array");
         n = sc.nextInt();
-        int i = 0;
-        int[] arr = new int[n];
-        while(i < n){
-            arr[i] = sc.nextInt();
-            i++;
-        }
+        TakeArrInp input = new TakeArrInp();
+        int[] arr = input.takeArrayInput(n);
         System.out.println("Enter the elemet you wish to find in the array");
         int searchElement = sc.nextInt();
         int result = BinarySearching(searchElement, arr);
