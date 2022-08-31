@@ -10,8 +10,8 @@ public class SelectionSorting {
         int n;
         System.out.println("Enter size of array");
         n = sc.nextInt();
-        TakeArrInp input = new TakeArrInp();
-        int arr[] = input.takeArrayInput(n);
+        //TakeArrInp input = new TakeArrInp();
+        int arr[] = TakeArrInp.takeArrayInput(n);
         System.out.println("Array before sort: ");
         PrintArray.printArray(arr);
         SelectionSort(arr);

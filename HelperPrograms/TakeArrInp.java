@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class TakeArrInp {
     
-    public int[] takeArrayInput(int n){
+    public static int[] takeArrayInput(int n){
         Scanner sc = new Scanner(System.in);
         int i = 0;
         int[] arr = new int[n];
