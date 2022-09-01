@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class TakeArrInp {
     
+    /*This method accepts size of the array as input to declare array of that size */
     public static int[] takeArrayInput(int n){
         Scanner sc = new Scanner(System.in);
         int i = 0;
@@ -12,6 +13,7 @@ public class TakeArrInp {
             arr[i] = sc.nextInt();
             i++;
         }
+        System.out.println();
         return arr;
     }
 }
