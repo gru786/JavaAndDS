@@ -1,3 +1,4 @@
+package SearchingAlgorithm;
 import java.util.Scanner;
 
 import HelperPrograms.TakeArrInp;
