@@ -1,25 +1,59 @@
 package BinaryTrees;
+import java.util.Scanner;
 
 public class BinaryTree {
-    public static void main(String[] args){
-        BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(10);
-        root.data = 10;
 
-        BinaryTreeNode<Integer> rootLeft = new BinaryTreeNode<Integer>(8);
-        BinaryTreeNode<Integer> rootRight = new BinaryTreeNode<Integer>(14);
+    public static BinaryTreeNode<Integer> takeInput(boolean isRoot, int parentData, boolean isLeft){
+        if(isRoot){
+            // TODO:
+            System.out.println("Enter the root of the tree:");
+        }
+        else{
+            if(isLeft){
+                System.out.println("Enter the left child of " + parentData);
+            }
+            else{
+                System.out.println("Enter the right child of " + parentData);
+            }
+
+        }
+        Scanner sc = new Scanner(System.in);
+        int data = sc.nextInt();
+        if(data == -1){
+            return null;
+        }
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(data);
+
+        BinaryTreeNode<Integer> rootLeft = takeInput(false, root.data, true);
+        BinaryTreeNode<Integer> rootRight = takeInput(false, root.data, false);
         root.left = rootLeft;
         root.right = rootRight;
+        return root;
 
-        BinaryTreeNode<Integer> rootLeftLeft = new BinaryTreeNode<Integer>(4);
-        BinaryTreeNode<Integer> rootLeftRight = new BinaryTreeNode<Integer>(9);
-        BinaryTreeNode<Integer> rootRightLeft = new BinaryTreeNode<Integer>(11);
-        BinaryTreeNode<Integer> rootRightRight = new BinaryTreeNode<Integer>(16);
-        rootLeft.left = rootLeftLeft;
-        rootLeft.right = rootLeftRight;
-        rootRight.left = rootRightLeft;
-        rootRight.right = rootRightRight;
+
+    }
+    public static void main(String[] args){
+        // BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(10);
+        // root.data = 10;
+
+        // BinaryTreeNode<Integer> rootLeft = new BinaryTreeNode<Integer>(8);
+        // BinaryTreeNode<Integer> rootRight = new BinaryTreeNode<Integer>(14);
+        // root.left = rootLeft;
+        // root.right = rootRight;
+
+        // BinaryTreeNode<Integer> rootLeftLeft = new BinaryTreeNode<Integer>(4);
+        // BinaryTreeNode<Integer> rootLeftRight = new BinaryTreeNode<Integer>(9);
+        // BinaryTreeNode<Integer> rootRightLeft = new BinaryTreeNode<Integer>(11);
+        // BinaryTreeNode<Integer> rootRightRight = new BinaryTreeNode<Integer>(16);
+        // rootLeft.left = rootLeftLeft;
+        // rootLeft.right = rootLeftRight;
+        // rootRight.left = rootRightLeft;
+        // rootRight.right = rootRightRight;
+        BinaryTreeNode<Integer> root = takeInput(true, 1, false);
 
         printBinaryTree(root);
+        System.out.println("Number of Nodes are: " + numOfNodes(root));
+        System.out.println("Largest node is: " + findLargest(root));
 
 
     }
@@ -39,5 +73,23 @@ public class BinaryTree {
 
         printBinaryTree(root.left);
         printBinaryTree(root.right);
+    }
+
+    public static int numOfNodes(BinaryTreeNode<Integer> root){
+        if(root == null){
+            return 0;
+        }
+        int rootLeftCount = numOfNodes(root.left);
+        int rootRightCount = numOfNodes(root.right);
+        return 1+ rootLeftCount + rootRightCount;
+    }
+
+    public static int findLargest(BinaryTreeNode<Integer> root){
+        if(root == null){
+            return -1;
+        }
+        int leftLargest = findLargest(root.left);
+        int rightLargest = findLargest(root.right);
+        return Math.max(root.data, Math.max(leftLargest, rightLargest));
     }
 }
