@@ -54,6 +54,7 @@ public class BinaryTree {
         printBinaryTree(root);
         System.out.println("Number of Nodes are: " + numOfNodes(root));
         System.out.println("Largest node is: " + findLargest(root));
+        System.out.println("Number of Leaf Nodes are: " + numOfLeafNodes(root));
 
 
     }
@@ -91,5 +92,16 @@ public class BinaryTree {
         int leftLargest = findLargest(root.left);
         int rightLargest = findLargest(root.right);
         return Math.max(root.data, Math.max(leftLargest, rightLargest));
+    }
+
+    public static int numOfLeafNodes(BinaryTreeNode<Integer> root){
+        if(root == null){
+            return 0;
+        }
+        if(root.left == null && root.right == null){
+            return 1;
+        }
+         
+        return numOfLeafNodes(root.left) + numOfLeafNodes(root.right);
     }
 }
