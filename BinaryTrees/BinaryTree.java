@@ -1,7 +1,42 @@
 package BinaryTrees;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
+
 public class BinaryTree {
+
+    public static BinaryTreeNode<Integer> takeInputLevelOrder(){
+        System.out.println("Enter the root");
+        Scanner sc = new Scanner(System.in);
+        int rootData = sc.nextInt();
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(rootData);
+
+        Queue<BinaryTreeNode<Integer>> pendingChildren = new LinkedList<BinaryTreeNode<Integer>>();
+        pendingChildren.add(root);
+        while(!pendingChildren.isEmpty()){
+            BinaryTreeNode<Integer> current = pendingChildren.remove();
+            System.out.println("Enter the left child of :" + current.data);
+            int leftData = sc.nextInt();
+
+            if(leftData != -1){
+                BinaryTreeNode<Integer> left = new BinaryTreeNode<Integer>(leftData);
+                current.left = left;
+                pendingChildren.add(left);
+            }
+
+            System.out.println("Enter the right child of :" + current.data);
+            int rightData = sc.nextInt();
+
+            if(rightData != -1){
+                BinaryTreeNode<Integer> right = new BinaryTreeNode<Integer>(rightData);
+                current.right = right;
+                pendingChildren.add(right);
+            }
+        }
+        return root;
+    }
+
 
     public static BinaryTreeNode<Integer> takeInput(boolean isRoot, int parentData, boolean isLeft){
         if(isRoot){
@@ -49,8 +84,8 @@ public class BinaryTree {
         // rootLeft.right = rootLeftRight;
         // rootRight.left = rootRightLeft;
         // rootRight.right = rootRightRight;
-        BinaryTreeNode<Integer> root = takeInput(true, 1, false);
-
+        // BinaryTreeNode<Integer> root = takeInput(true, 1, false);
+        BinaryTreeNode<Integer> root = takeInputLevelOrder();
         printBinaryTree(root);
         System.out.println("Number of Nodes are: " + numOfNodes(root));
         System.out.println("Largest node is: " + findLargest(root));
