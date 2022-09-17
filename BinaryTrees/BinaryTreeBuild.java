@@ -71,36 +71,4 @@ public class BinaryTreeBuild {
 	}
 
 }
-class Pair<T, U> {
-    T minimum;
-    U maximum;
 
-    public Pair(T minimum, U maximum) {
-        this.minimum = minimum;
-        this.maximum = maximum;
-    }
-
-}
-public class Solution {
-
-	public static Pair<Integer, Integer> getMinAndMax(BinaryTreeNode<Integer> root) {
-		//Your code goes here
-        if(root == null){
-            return null;
-        }
-        Pair<Integer, Integer> leftRes = new Pair<Integer, Integer>(Integer.MAX_VALUE,Integer.MIN_VALUE);
-        Pair<Integer, Integer> rightRes = new Pair<Integer, Integer>(Integer.MAX_VALUE,Integer.MIN_VALUE);
-        int rootData = root.data;
-        leftRes = getMinAndMax(root.left);
-        rightRes = getMinAndMax(root.right);
-        int max = Math.max(rootData, Math.max(leftRes.max, rightRes.max));
-        int min = Math.min(rootData, Math.min(leftRes.min, rightRes.min));
-        
-        Pair<Integer, Integer> result = new Pair<Integer, Integer>(min,max);
-        return result;
-        
-        
-        
-	}
-	
-}
